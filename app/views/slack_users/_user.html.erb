@@ -1,0 +1,49 @@
+<% if @user%>
+  <li>
+  <div style = "display: inline-block;"class="user-container p-2">
+      <%= image_tag(@user.avatar, width: "100%", class: "rounded-avatar") %>
+      <div class="name-container">
+        <strong class="text-white"style = "background: red;"><%=@user.name %></strong>
+      </div>
+  </div>
+
+  <style type="text/css">
+
+    .rounded-avatar{
+      width: 140px;
+      height: 140px;
+      border-radius: 6px;
+    }
+    .text-white{
+      color: white;
+    }
+    .no-video{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .name-container{
+      font-size: 13px;
+      position: absolute;
+      bottom: 17px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .user-container{
+      border-radius: 10px;
+      border: 3px solid white;
+      position: relative;
+      margin-bottom: 0;
+      line-height: 0;
+    }
+    .no-video.d-none{
+      order: 2;
+      width: 13%;
+      background: #350f36;
+      box-sizing: border-box;
+      padding: 0px 10px;
+    }
+  </style>
+  </li>
+<%end%>
