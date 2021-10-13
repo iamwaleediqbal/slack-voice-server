@@ -83,6 +83,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.web_socket_server_url = "wss://slack-voice-server.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://slack-voice-server.herokuapp.com', 'http://slack-voice-server.herokuapp.com']
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
