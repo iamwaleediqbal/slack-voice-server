@@ -9,4 +9,5 @@ Rails.application.routes.draw do
       post 'send_to_slack'
     end
   end
+  root 'welcome#index'
 end
