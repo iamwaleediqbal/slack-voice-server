@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_08_13_074812) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conversation_members", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "conversation_id", null: false
+    t.bigint "member_id", null: false
+    t.bigint "conversation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_conversation_members_on_conversation_id"
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_074812) do
     t.string "name"
     t.string "creator_id"
     t.string "last_read"
-    t.integer "team_id", null: false
-    t.integer "slack_user_id", null: false
+    t.bigint "team_id", null: false
+    t.bigint "slack_user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slack_user_id"], name: "index_conversations_on_slack_user_id"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_074812) do
     t.boolean "is_app_user"
     t.boolean "is_deleted"
     t.string "timestamps"
-    t.integer "team_id", null: false
+    t.bigint "team_id", null: false
     t.index ["team_id"], name: "index_members_on_team_id"
   end
 
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_074812) do
     t.string "slack_user_id"
     t.string "scope"
     t.string "access_token"
-    t.integer "team_id", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "avatar"
