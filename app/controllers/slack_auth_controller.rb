@@ -69,7 +69,7 @@ class SlackAuthController < ApplicationController
 
       if @extention == "webm"
           system "for f in #{@dir}/*.#{@extention} ; do echo file \"${f##*/}\" >> #{@dir}/list.txt; done && ffmpeg -f concat -safe 0 -i #{@dir}/list.txt -c copy #{@dir}/message.#{@extention} && rm #{@dir}/list.txt"
-        system "ffmpeg -y -safe 0 -i #{@dir}/message.#{@extention} -ab 6400  #{@dir}/message.mp3"
+        system "ffmpeg -y -i #{@dir}/message.#{@extention} -ab 6400  #{@dir}/message.mp3"
         @file = Faraday::FilePart.new("#{@dir}/message.mp3", 'mp3')
       else
         system "for f in #{@dir}/*.#{@extention} ; do echo file \"${f##*/}\" >> #{@dir}/list.txt; done && ffmpeg -f concat -safe 0 -i #{@dir}/list.txt -c:v copy -c:a aac #{@dir}/message.#{@extention} && rm #{@dir}/list.txt"
