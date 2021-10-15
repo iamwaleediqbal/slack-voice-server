@@ -14,8 +14,8 @@ class SlackAuthController < ApplicationController
   end
 
   def create
-    dir =  FileUtils.mkdir_p "public/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/"
-    convert_dir =  FileUtils.mkdir_p "public/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/converted"
+    dir =  FileUtils.mkdir_p "tmp/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/"
+    convert_dir =  FileUtils.mkdir_p "tmp/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/converted"
     if @team && @user
         data = request.params["blob"]
         File.open("#{dir[0]}/#{data.original_filename}", 'wb') do |file|
@@ -60,9 +60,9 @@ class SlackAuthController < ApplicationController
   def convertor
       @extention = params[:mime_type].include?("video") ?  "mkv" : "webm"
       if @extention == "mkv"
-        @dir = "public/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/converted"
+        @dir = "tmp/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}/converted"
       else
-        @dir = "public/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}"
+        @dir = "tmp/#{params[:sender].split("/")[2]}-#{ params[:user_id]}-#{params[:folder_name]}"
       end
 
       sleep 0.6
