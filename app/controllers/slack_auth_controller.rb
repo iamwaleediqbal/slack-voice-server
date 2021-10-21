@@ -10,7 +10,7 @@ class SlackAuthController < ApplicationController
 
     pp response.body
     create_user  JSON.parse(response.body)
-    render json: JSON.parse(response.body)
+    redirect_to "app.slack.com"
   end
 
   def create
